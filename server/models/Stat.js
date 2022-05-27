@@ -2,7 +2,6 @@
 
 const { Schema, model } = require("mongoose");
 
-
 // in typeDefs require just the username to create and empty Stat block
 
 const statSchema = new Schema(
