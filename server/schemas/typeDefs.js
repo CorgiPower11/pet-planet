@@ -3,29 +3,26 @@ const { gql } = require("apollo-server-express");
 Look over ME query in office hours, think I got the syntax wrong.  Looking to retun User object, Pet object or Stat object for the logged in user
 
 */
-const typeDefs = gwl`
-type Auth {
+const typeDefs = gql`
+  type Auth {
     token: ID!
     user: User
   }
 
   type User {
-      _id: ID
-      username: String
-      email: String
-      points: Number
-      quizesAttempted: Number
-      correctAnswers: Number
-      stats: [Stat]
-      pet: [Pet]
+    _id: ID
+    username: String
+    email: String
+    stats: [Stat]
+    pet: [Pet]
   }
 
   type Query {
-      me: User
-      users: [User]
-      user(username: String!): User
-      pet(username: String): [Pet]
-      stats(username: String): [Stat]
+    me: User
+    users: [User]
+    user(username: String!): User
+    pet(username: String): [Pet]
+    stats(username: String): [Stat]
   }
 
   type Stat {
@@ -54,7 +51,6 @@ type Auth {
     createPet(username: String!, petName: String!, petType: String!): Pet
     createStat(username: String!): Stat
   }
-
 `;
 
 module.exports = typeDefs;

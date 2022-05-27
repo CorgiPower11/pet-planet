@@ -28,20 +28,10 @@ const userSchema = new Schema(
       ],
       minlength: [8, "Password must be a minimum of eight characters."],
     },
-    petId: {
+    petName: {
       type: String,
       required: true,
       unique: true,
-    },
-    points: {
-      type: Number,
-      required: true,
-    },
-    quizesAttempted: {
-      type: Number,
-    },
-    correctAnswers: {
-      type: Number,
     },
     // Need to ask TA on this to verify syntax
     stats: [
