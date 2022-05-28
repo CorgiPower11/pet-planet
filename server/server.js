@@ -16,7 +16,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   // When you instantiate a new instance of ApolloServer, you can pass in a context method that's set to return whatever you want available in the resolvers.
-  context: authMiddleware, // This ensures that every request performs an authentication check -> imported from utils/auth
+  context: authMiddleware, // The context is initialized to the authMiddleware function and that function is called with every request.  This context can then be passed into each resolver.  
 });
 
 const app = express();

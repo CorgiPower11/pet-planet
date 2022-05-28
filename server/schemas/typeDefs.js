@@ -28,10 +28,10 @@ const typeDefs = gql`
   type Stat {
     _id: ID
     username: String
-    pointsEarned: Number
-    quizesCompleted: Number
-    questionsAnswered: Number
-    correctAnswers: Number
+    pointsEarned: Int
+    quizesCompleted: Int
+    questionsAnswered: Int
+    correctAnswers: Int
   }
 
   type Pet {
@@ -39,17 +39,21 @@ const typeDefs = gql`
     username: String
     petName: String
     petType: String
-    lastFed: Date
-    hunger: Number
-    thirst: Number
-    affection: Number
+    lastFed: String
+    hunger: Int
+    thirst: Int
+    affection: Int
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
-    createUser(username: String!, email: String!, password: String!): Auth
-    createPet(username: String!, petName: String!, petType: String!): Pet
-    createStat(username: String!): Stat
+    createUser(
+      username: String!
+      email: String!
+      password: String!
+      petName: String!
+      petType: String!
+    ): Auth
   }
 `;
 
