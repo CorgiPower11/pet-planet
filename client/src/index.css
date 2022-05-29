@@ -11,3 +11,34 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+:root {
+  --lightest: #CAF0F8;
+  --light: #90E0EF;
+  --regular: #00B4D8;
+  --dark: #03045E;
+}
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background-color: var(--light);
+  padding-top: 30px; 
+}
+
+h1 {
+  font-weight: 900;
+}
+
+button:hover {
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.box {
+  background-color: var(--lightest);
+}
+
+.navItem:hover {
+  cursor: pointer;
+  font-weight: 900;
+}
