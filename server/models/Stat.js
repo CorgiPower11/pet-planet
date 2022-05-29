@@ -26,13 +26,7 @@ const statSchema = new Schema(
     },
     correctAnswers: {
       type: Number,
-    },
-    lowestScoreOnLeaderboard: {
-      /* A refernce to lowest score on the leaderboard. At end of quiz, check if users
-      new pointsEarned is greater than lowestOnLeaderboard then if it is recalculate
-      leaderboard ranking.  Less load on server.*/
-      type: Number,
-    },
+    }, // could add reference to lowest score on leadr board as an easy check to see  if the leaderboard needs to recalculate
   },
   {
     toJSON: {

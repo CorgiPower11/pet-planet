@@ -29,12 +29,12 @@ const userSchema = new Schema(
       minlength: [8, "Password must be a minimum of eight characters."],
     },
     // Need to ask TA on this to verify syntax
-    stats: [
+    stats: 
       {
         type: Schema.Types.ObjectId, // Store ObjectId of users Stat instance
         ref: "Stat",
+        default: null,
       },
-    ],
     pet: [
       {
         type: Schema.Types.ObjectId, // Store ObjectId of users Pet instance

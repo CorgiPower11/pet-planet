@@ -32,17 +32,29 @@ export const CREATE_USER = gql`
   }
 `;
 
-export const CREATE_STAT = gql `
-mutation createStat($username: String!) {
-  createStat(username: $username) {
+export const CREATE_STAT = gql`
+  mutation createStat($username: String!) {
+    createStat(username: $username) {
+      _id
+      username
+      pointsEarned
+      pointsBanked
+      quizesCompleted
+      questionsAnswered
+      correctAnswers
+    }
+  }
+`;
+
+export const CREATE_PET = gql`
+mutation createPet($username: String!, petName: String!, petType: String!) {
+  createpet(username: $username, petName: $petName, petType: $petType) {
     _id
-    username
-    pointsEarned
-    pointsBanked
-    quizesCompleted
-    questionsAnswered
-    correctAnswers
-    lowestOnLeaderboard
+    petName
+    petType
   }
 }
-`
+`;
+
+
+// export const UPDATE_

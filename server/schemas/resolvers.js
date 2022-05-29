@@ -58,21 +58,20 @@ const resolvers = {
       // expects username
       const username = args.username;
       console.log(args);
-      // create the users Stat and Pet object as part of the createUser mutation
       const stat = await Stat.create({
         username: username,
         pointsEarned: 0,
+        pointsBanked: 0,
         quizesCompleted: 0,
         questionsAnswered: 0,
         correctAnswers: 0,
       });
 
-      console.log(stat._id);
+      console.log("This is the stat ID", stat._id);
 
-      await User.findOne(
+      await User.findOneAndUpdate(
         { username: username },
-        { $push: { pet: stat._id } }, // Push the objectId of the new Stat object into the users stats array
-        { new: true }
+        { stats: stat._id }, // Push the objectId of the new Stat object into the users stats array
       );
 
       return stat;
@@ -92,9 +91,9 @@ const resolvers = {
       });
 
       console.log(pet);
-      await User.findOne(
-        { username: username },
-        { $push: { stats: pet._id } }, // Push the objectId of the new Pet object into the users stats array
+      await User.findOneAndUpdate(
+        { username: args.username },
+        { $push: { pet: pet._id } }, // Push the objectId of the new Pet object into the users stats array
         { new: true }
       );
 

@@ -33,7 +33,6 @@ const typeDefs = gql`
     quizesCompleted: Int
     questionsAnswered: Int
     correctAnswers: Int
-    lowestScoreOnLeaderboard: Int
   }
 
   type Pet {
@@ -49,14 +48,15 @@ const typeDefs = gql`
 
   type Mutation {
     login(email: String!, password: String!): Auth
-    createUser(
-      username: String!
-      email: String!
-      password: String!
-    ): Auth
+    createUser(username: String!, email: String!, password: String!): Auth
     createStat(username: String!): Stat
     createPet(username: String!, petName: String!, petType: String!): Pet
   }
 `;
 
 module.exports = typeDefs;
+/*
+    updateStat(username: String!, pointsEarned: Int, pointsBanked: Int, quizesCompleted: Int, correctAnswers: Int) : Stat
+    updateUser(username: String!, email: String, password: String): User
+    updatePet(username: String!, petName: String, lastFed: String, hunger: Int, thirst: Int, affection: Int): Pet
+*/
