@@ -15,6 +15,8 @@ import Footer from "./components/Footer";
 
 // Pages
 import Home from "./pages/Home";
+import Landing from "./pages/Landing";
+import Pets from "./pages/pet";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -41,7 +43,8 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/pet" element={<Pets />} />
         </Routes>
         <Footer />
       </Router>
