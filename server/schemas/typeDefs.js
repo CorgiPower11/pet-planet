@@ -29,9 +29,11 @@ const typeDefs = gql`
     _id: ID
     username: String
     pointsEarned: Int
+    pointsBanked: Int
     quizesCompleted: Int
     questionsAnswered: Int
     correctAnswers: Int
+    lowestScoreOnLeaderboard: Int
   }
 
   type Pet {
@@ -51,9 +53,9 @@ const typeDefs = gql`
       username: String!
       email: String!
       password: String!
-      petName: String!
-      petType: String!
     ): Auth
+    createStat(username: String!): Stat
+    createPet(username: String!, petName: String!, petType: String!): Pet
   }
 `;
 

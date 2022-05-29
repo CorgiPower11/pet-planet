@@ -20,28 +20,29 @@ mutation createUser - This line defines what is being taken in from the frontend
 2nd createUser this line passes the value into the createUser mutation on the backend
 the remining lines define what is expected in the return statement. A jwt token, User._id and User.username
 */
-// modified this so the users stat object and pet object are created as part of the CREATE_USER mutation
 export const CREATE_USER = gql`
-  mutation createUser(
-    $username: String!
-    $email: String!
-    $password: String!
-    $petName: String!
-    $petType: String!
-  ) {
-    createUser(
-      username: $username
-      email: $email
-      password: $password
-      petName: $petName
-      petType: $petType
-    ) {
+  mutation createUser($username: String!, $email: String!, $password; String!) {
+    createUser(username: $username, email: $email, password: $password) {
       token
       user {
         _id
         username
-        email
       }
     }
   }
 `;
+
+export const CREATE_STAT = gql `
+mutation createStat($username: String!) {
+  createStat(username: $username) {
+    _id
+    username
+    pointsEarned
+    pointsBanked
+    quizesCompleted
+    questionsAnswered
+    correctAnswers
+    lowestOnLeaderboard
+  }
+}
+`

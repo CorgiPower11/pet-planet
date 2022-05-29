@@ -46,6 +46,83 @@ const resolvers = {
     },
   },
   Mutation: {
+    // expects username, email and password
+    createUser: async (parent, args) => {
+      // Create a new User with data passed in the args
+      const user = await User.create(args);
+      const token = signToken(user);
+
+      return { token, user }; // return the token and user
+    },
+    createStat: async (parent, args) => {
+      // expects username
+      const username = args.username;
+      console.log(args);
+      // create the users Stat and Pet object as part of the createUser mutation
+      const stat = await Stat.create({
+        username: username,
+        pointsEarned: 0,
+        quizesCompleted: 0,
+        questionsAnswered: 0,
+        correctAnswers: 0,
+      });
+
+      console.log(stat._id);
+
+      await User.findOne(
+        { username: username },
+        { $push: { pet: stat._id } }, // Push the objectId of the new Stat object into the users stats array
+        { new: true }
+      );
+
+      return stat;
+    },
+    createPet: async (parent, args) => {
+      // expects username, petName, petType
+      petCreated = new Date();
+      console.log(petCreated);
+      const pet = await Pet.create({
+        username: args.username,
+        petName: args.petName,
+        petType: args.petType,
+        lastFed: petCreated, // intialize to timestamp of creation
+        hunger: 100, // high is good?
+        thirst: 100, // high is good?
+        affection: 50, // middle of range
+      });
+
+      console.log(pet);
+      await User.findOne(
+        { username: username },
+        { $push: { stats: pet._id } }, // Push the objectId of the new Pet object into the users stats array
+        { new: true }
+      );
+
+      return pet;
+    },
+    login: async (parent, { email, password }) => {
+      // find a user by their email
+      const user = await User.findOne({ email });
+      // if there is no user with that email advise the user
+      if (!user) {
+        throw new AuthenticationError("Incorrect credentials");
+      }
+      // if there is a user with that email then use the isCorrectPassword method of the User model to return a boolean
+      const correctPw = await user.isCorrectPassword(password);
+      // If password is incorrect advise user
+      if (!correctPw) {
+        throw new AuthenticationError("incorrect credentials");
+      }
+      // If credentials are correct provide a JWT token to the logged in user and return the token and the user found at the begining of the function
+      const token = signToken(user);
+      return { token, user };
+    },
+  },
+};
+
+module.exports = resolvers;
+
+/*
     createUser: async (parent, args) => {
       // Create a new User with data passed in the args
       const user = await User.create(args);
@@ -90,24 +167,4 @@ const resolvers = {
 
       return { token, user, stat, pet }; // return the token and user
     },
-    login: async (parent, { email, password }) => {
-      // find a user by their email
-      const user = await User.findOne({ email });
-      // if there is no user with that email advise the user
-      if (!user) {
-        throw new AuthenticationError("Incorrect credentials");
-      }
-      // if there is a user with that email then use the isCorrectPassword method of the User model to return a boolean
-      const correctPw = await user.isCorrectPassword(password);
-      // If password is incorrect advise user
-      if (!correctPw) {
-        throw new AuthenticationError("incorrect credentials");
-      }
-      // If credentials are correct provide a JWT token to the logged in user and return the token and the user found at the begining of the function
-      const token = signToken(user);
-      return { token, user };
-    },
-  },
-};
-
-module.exports = resolvers;
+*/
