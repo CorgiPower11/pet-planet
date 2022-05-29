@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 
 
 // Password regex 8 to 30 characters, containe >0 uppercase, >0 lowercase, >0 digits and >0 of [!,$, %, #]
-pwRegex = "^(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$";
+// pwRegex = "^(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$";
 // Separate Model for Quiz stats and associate it to the user ID - Makes it more scalable
 const userSchema = new Schema(
   {
@@ -22,16 +22,11 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: true,
-      match: [
+      /*match: [
         pwRegex,
         "Passwords have a minimum length of eight, maximum length of thrity and must contain at least one lowercase letter, uppercase letter and digit",
-      ],
+      ],*/
       minlength: [8, "Password must be a minimum of eight characters."],
-    },
-    petName: {
-      type: String,
-      required: true,
-      unique: true,
     },
     // Need to ask TA on this to verify syntax
     stats: [

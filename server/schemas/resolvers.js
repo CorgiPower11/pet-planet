@@ -52,40 +52,43 @@ const resolvers = {
       const token = signToken(user);
 
       const username = args.username;
-      console.log(username);
+      console.log(args);
       // create the users Stat and Pet object as part of the createUser mutation
       // User doesnt have the logged in context untila fter createUser runs, so use the args to create their Stat and Pet objects
       const stat = await Stat.create({
         username: username,
         pointsEarned: 0,
         quizesCompleted: 0,
-        uestionsAnswered: 0,
+        questionsAnswered: 0,
         correctAnswers: 0,
       });
-
+      console.log(stat._id);
       await User.findOne(
         { username: username },
-        { $push: { stats: stat._id } }, // Push the objectId of the new Stat object into the users stats array
+        { $push: { pet: stat._id } }, // Push the objectId of the new Stat object into the users stats array
         { new: true }
       );
 
+      petCreated = new Date();
+      console.log(petCreated);
       const pet = await Pet.create({
         username: args.username,
         petName: args.petName,
         petType: args.petType,
-        lastFed: new Date(), // intialize to timestamp of creation
+        lastFed: petCreated, // intialize to timestamp of creation
         hunger: 100, // high is good?
         thirst: 100, // high is good?
         affection: 50, // middle of range
       });
 
+      console.log(pet);
       await User.findOne(
         { username: username },
         { $push: { stats: pet._id } }, // Push the objectId of the new Pet object into the users stats array
         { new: true }
       );
 
-      return { token, user }; // return the token and user
+      return { token, user, stat, pet }; // return the token and user
     },
     login: async (parent, { email, password }) => {
       // find a user by their email
