@@ -20,8 +20,6 @@ const petSchema = new Schema({
   lastFed: {
     /* Could use to calculate how long it has been since last feeding and adjust the pets hunger and thirst. On login pass username of logged in user to a function which calculates how much hunger, thirst etc the pet has lost. Then modifies the users pet before its stats are rendered.  Modify this when pet is fed*/
     type: Date,
-    default: Date.now,
-    get: (timestamp) => dateFormat(timestamp),
   },
   hunger: {
     type: Number,
