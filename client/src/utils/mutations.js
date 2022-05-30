@@ -56,5 +56,79 @@ mutation createPet($username: String!, petName: String!, petType: String!) {
 }
 `;
 
+export const UPDATE_USER = gql`
+  mutation updateUser($username: String!, $email: String, $password: String) {
+    updateUser(username: $username, email: $email, password: $password) {
+      user {
+        _id
+        username
+        email
+      }
+    }
+  }
+`;
 
-// export const UPDATE_
+export const UPDATE_STAT = gql`
+  mutation updateStat(
+    $statId: String!
+    $difficulty: String!
+    $correctAnswers: Int!
+    $quizLength: Int!
+  ) {
+    updateStat(
+      statId: $statId
+      difficulty: $difficulty
+      correctAnswers: $correctAnswers
+      quizLength: $quizLength
+    ) {
+      stat {
+        _id
+        username
+        pointsEarned
+        pointsBanked
+        quizesCompleted
+        questionsAnswered
+        correctAnswers
+      }
+    }
+  }
+`;
+
+// Pass number of points spent feeding, watering and playing with pet, then update the pet based on that.
+export const NURISH_PET = gql`
+  mutation nurishPet($petId: String!, $fed: Int, $drank: Int, $playedWith: Int
+  ) {
+    nurishPet(
+      petId: $petId, fed: $fed, drank: $drank, playedWith: $playedWith
+    ) {
+      pet {
+        _id
+        username
+        petName
+        petType
+        lastFed
+        hunger
+        thirst
+        affection
+      }
+    }
+  }
+`;
+
+export const DECAY_NEEDS = gql`
+  mutation decayPetNeeds($petId: String!) {
+    decayPetNeeds(petId: $petId) {
+      pet {
+        _id
+        username
+        petName
+        petType
+        lastFed
+        hunger
+        thirst
+        affection
+      }
+    }
+  }
+`;
+

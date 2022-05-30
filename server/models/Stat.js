@@ -35,20 +35,12 @@ const statSchema = new Schema(
     },
   }
 );
-
+/*
 // uses correctAnsers and questionsAnswered to calculate the percent of questions answered correctly as a decimal. Can be parsed to percent on the front end
 statSchema.virtual("percentCorrect").get(function () {
-  return this.correctAnswers / questionsAnswered;
+  return this.correctAnswers / this.questionsAnswered;
 });
-
-// Virtual to check if user has made it onto the leaderboard
-statSchema.virtual("leaderboardCheck").get(function () {
-  if (this.pointsEarned > this.lowestScoreOnLeaderboard) {
-    return true;
-  } else {
-    return false;
-  }
-});
+*/
 
 const Stat = model("Stat", statSchema);
 module.exports = Stat;
