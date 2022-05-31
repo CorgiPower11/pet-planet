@@ -1,6 +1,11 @@
 import React from "react";
 import jarjar from "../assets/img/Jar-Jar.png"// TEMP FOR EXAMPLE DELETE IN PROD
 
+// Get information from database about which photo to display, 
+//it could be either the photo itself or a refernce to a photo
+//
+
+
 const Pets = () => {
     return (
         <div className="container-fluid">
