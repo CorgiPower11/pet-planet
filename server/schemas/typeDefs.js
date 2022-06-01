@@ -44,13 +44,14 @@ const typeDefs = gql`
     hunger: Int
     thirst: Int
     affection: Int
+    imgName: String
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
     createUser(username: String!, email: String!, password: String!): Auth
     createStat(username: String!): Stat
-    createPet(username: String!, petName: String!, petType: String!): Pet
+    createPet(username: String!, petName: String!, petType: String!, imgName: String!): Pet
     updateStat(statId: String!, difficulty: String!, correctAnswers: Int!, quizLength: Int!): Stat
     updateUser(username: String!, email: String, password: String): User
     nurishPet(petId: String!, fed: Int, drank: Int, playedWith: Int): Pet

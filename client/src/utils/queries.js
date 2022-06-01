@@ -68,6 +68,7 @@ export const QUERY_PET = gql`
       hunger
       thirst
       affection
+      imgName
     }
   }
 `;

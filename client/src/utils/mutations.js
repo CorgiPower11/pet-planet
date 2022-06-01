@@ -47,11 +47,12 @@ export const CREATE_STAT = gql`
 `;
 
 export const CREATE_PET = gql`
-mutation createPet($username: String!, petName: String!, petType: String!) {
-  createpet(username: $username, petName: $petName, petType: $petType) {
+mutation createPet($username: String!, $petName: String!, $petType: String!, $imgName: String!) {
+  createpet(username: $username, petName: $petName, petType: $petType, imgName: $imgName) {
     _id
     petName
     petType
+    imgName
   }
 }
 `;
@@ -110,6 +111,7 @@ export const NURISH_PET = gql`
         hunger
         thirst
         affection
+        imgName
       }
     }
   }
@@ -127,6 +129,7 @@ export const DECAY_NEEDS = gql`
         hunger
         thirst
         affection
+        imgName
       }
     }
   }

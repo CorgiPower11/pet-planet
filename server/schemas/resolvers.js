@@ -21,7 +21,6 @@ const resolvers = {
     stat: async (parent, { _id }) => {
       return Stat.findOne({ _id });
     },
-    // the lastFed field will return as the timestamp string in format of 1653868965337
     pet: async (parent, { _id }) => {
       return Pet.findOne({ _id });
     },
@@ -83,6 +82,7 @@ const resolvers = {
         hunger: 100, // high is good?
         thirst: 100, // high is good?
         affection: 50, // middle of range
+        imgName: args.imgName,
       });
 
       console.log(pet);
@@ -103,7 +103,6 @@ const resolvers = {
       );
     },
     updateStat: async (parent, args) => {
-
       // Expects statId: String!, difficulty: String!, correctAnswers: Int!, quizLength: Int!
       // get pre-update user stat block
       const oldStats = await Stat.findById(args.statId);
@@ -186,9 +185,9 @@ const resolvers = {
       const petId = args.petId;
       const oldPet = await Pet.findById(petId); // get the pre-feeding stats
       const lastFedAt = oldPet.lastFed; // bring in prior feeding time
-      const lastFedAtMs = Date.parse(lastFedAt) // pares to milliseconds
+      const lastFedAtMs = Date.parse(lastFedAt); // pares to milliseconds
       const currentDate = new Date(); // create new date for lastFed
-      const currentDateMs = Date.parse(currentDate) // pares to milliseconds
+      const currentDateMs = Date.parse(currentDate); // pares to milliseconds
       /* 
       // Time testing logs
       console.log("break");
@@ -196,17 +195,23 @@ const resolvers = {
       console.log("lastFedAtMs", lastFedAtMs)
       console.log("currentDate", currentDate)
       console.log("currentDateMs", currentDateMs);
-      Math.round(Math.abs(currentDateMs - lastFedAtMs) / 3600000)*/ 
+      Math.round(Math.abs(currentDateMs - lastFedAtMs) / 3600000)*/
       // 1 h = 3600000 ms
 
       // This will calculate difference in milliseconds, divides to find hours passed as decimal and rounds to the nearest integer
-      const hoursSinceLastFeeding = Math.round(Math.abs(currentDateMs - lastFedAtMs) / 3600000); 
+      const hoursSinceLastFeeding = Math.round(
+        Math.abs(currentDateMs - lastFedAtMs) / 3600000
+      );
       // console.log(hoursSinceLastFeeding);
 
+      // may need to add check incase no time has passed
       const needReductionMultiplier = 2; // We can assign this to whatever we like or make different multipliers for each need
-      const newHunger = oldPet.hunger - (hoursSinceLastFeeding * needReductionMultiplier);
-      const newThirst = oldPet.hunger - (hoursSinceLastFeeding * needReductionMultiplier);
-      const newAffection = oldPet.hunger - (hoursSinceLastFeeding * needReductionMultiplier);
+      const newHunger =
+        oldPet.hunger - hoursSinceLastFeeding * needReductionMultiplier;
+      const newThirst =
+        oldPet.hunger - hoursSinceLastFeeding * needReductionMultiplier;
+      const newAffection =
+        oldPet.hunger - hoursSinceLastFeeding * needReductionMultiplier;
 
       return await Pet.findOneAndUpdate(
         { _id: petId },
