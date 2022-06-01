@@ -21,7 +21,7 @@ mutation createUser - This line defines what is being taken in from the frontend
 the remining lines define what is expected in the return statement. A jwt token, User._id and User.username
 */
 export const ADD_USER = gql`
-  mutation createUser($username: String!, $email: String!, $password; String!) {
+  mutation createUser($username: String!, $email: String!, $password: String!) {
     createUser(username: $username, email: $email, password: $password) {
       token
       user {

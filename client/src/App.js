@@ -17,6 +17,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Landing from "./pages/Landing";
 import Pets from "./pages/pet";
+import SignupForm from "./components/SignUpForm";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
