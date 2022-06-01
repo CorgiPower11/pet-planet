@@ -20,8 +20,8 @@ mutation createUser - This line defines what is being taken in from the frontend
 2nd createUser this line passes the value into the createUser mutation on the backend
 the remining lines define what is expected in the return statement. A jwt token, User._id and User.username
 */
-export const CREATE_USER = gql`
-  mutation createUser($username: String!, $email: String!, $password; String!) {
+export const ADD_USER = gql`
+  mutation createUser($username: String!, $email: String!, $password: String!) {
     createUser(username: $username, email: $email, password: $password) {
       token
       user {
@@ -47,14 +47,24 @@ export const CREATE_STAT = gql`
 `;
 
 export const CREATE_PET = gql`
-mutation createPet($username: String!, $petName: String!, $petType: String!, $imgName: String!) {
-  createpet(username: $username, petName: $petName, petType: $petType, imgName: $imgName) {
-    _id
-    petName
-    petType
-    imgName
+  mutation createPet(
+    $username: String!
+    $petName: String!
+    $petType: String!
+    $imgName: String!
+  ) {
+    createpet(
+      username: $username
+      petName: $petName
+      petType: $petType
+      imgName: $imgName
+    ) {
+      _id
+      petName
+      petType
+      imgName
+    }
   }
-}
 `;
 
 export const UPDATE_USER = gql`
@@ -97,10 +107,17 @@ export const UPDATE_STAT = gql`
 
 // Pass number of points spent feeding, watering and playing with pet, then update the pet based on that.
 export const NURISH_PET = gql`
-  mutation nurishPet($petId: String!, $fed: Int, $drank: Int, $playedWith: Int
+  mutation nurishPet(
+    $petId: String!
+    $fed: Int
+    $drank: Int
+    $playedWith: Int
   ) {
     nurishPet(
-      petId: $petId, fed: $fed, drank: $drank, playedWith: $playedWith
+      petId: $petId
+      fed: $fed
+      drank: $drank
+      playedWith: $playedWith
     ) {
       pet {
         _id
@@ -134,4 +151,3 @@ export const DECAY_NEEDS = gql`
     }
   }
 `;
-

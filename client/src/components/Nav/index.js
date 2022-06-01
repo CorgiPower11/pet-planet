@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
-import SignUpForm from './SignupForm';
-import LoginForm from './LoginForm';
+import SignUpForm from '../../pages/SignUpForm';
+import LoginForm from '../../pages/LoginForm';
 
-import Auth from '../utils/auth';
+import Auth from '../../utils/auth';
 
 const AppNavbar = () => {
   // set modal display state
@@ -26,7 +26,7 @@ const AppNavbar = () => {
               {/* if user is logged in show pet and logout */}
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to='/saved'>
+                  <Nav.Link as={Link} to='/pet'>
                     See Your Pet
                   </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
