@@ -1,8 +1,4 @@
-import React from "react";
-import './quizStyle.css'
 
-const Quiz = () => {
-    
 const _question = document.getElementById('question');
 const _options = document.querySelector('.quiz-options');
 const _checkBtn = document.getElementById('check-answer');
@@ -11,12 +7,11 @@ const _result = document.getElementById('result');
 const _correctScore = document.getElementById('correct-score');
 const _totalQuestion = document.getElementById('total-question');
 
-let askedCount = 0
-let correctAnswer = "", correctScore = askedCount, totalQuestion = 10;
+let correctAnswer = "", correctScore = askedCount = 0, totalQuestion = 10;
 
 // load question from API
 async function loadQuestion(){
-    const APIUrl = 'https://opentdb.com/api.php?amount=10';
+    const APIUrl = 'https://opentdb.com/api.php?amount=1';
     const result = await fetch(`${APIUrl}`)
     const data = await result.json();
     _result.innerHTML = "";
@@ -128,41 +123,3 @@ function restartQuiz(){
     setCount();
     loadQuestion();
 }
-
-  return (
-    <main>
-    <div className="wrapper">
-    <div className="quiz-container">
-      <div className="quiz-head">
-        <h1 className="quiz-title">Quiz Game</h1>
-        <div className="quiz-score flex">
-          <span id="correct-score" />/<span id="total-question" />
-        </div>
-      </div>
-      <div className="quiz-body">
-        <h2 className="quiz-question" id="question">
-          {/*What is the full form of HTTP? */}
-        </h2>
-        <ul className="quiz-options">
-          {/* <li>1. Hyper text transfer package</li>
-                <li>2. Hyper text transfer protocol</li>
-                <li>3. Hyphenation text test program</li>
-                <li>4. None of the above</li> */}
-        </ul>
-        <div id="result"></div>
-      </div>
-      <div className="quiz-foot">
-        <button type="button" id="check-answer">
-          Check Answer
-        </button>
-        <button type="button" id="play-again">
-          Play Again!
-        </button>
-      </div>
-    </div>
-  </div>
-  </main>
-  );
-}
-
-export default Quiz;
