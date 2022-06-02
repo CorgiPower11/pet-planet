@@ -21,27 +21,27 @@ const Pets = () => {
         {/* <!-- Pets Name Row --> */}
         <div className="row mt-5 justify-content-center">
             <div className="col-3 border border-dark box py-1">
-            <h1 className="text-center" id="petName">{pet.petName}</h1>
+            <h1 className="text-center" id="petName">Samuel</h1>
             </div>
         </div>
 
         {/* <!-- Pet Picture Row --> */}
         <div className="row justify-content-center">
             <div className="col-md-4 text-center mt-3">
-                <img src={pet.imgName} className="img-fluid" alt="Alien"/>
+                <img src="../temp/img/ET.png" className="img-fluid" alt="Alien"/>
             </div>
         </div>
 
         {/* <!-- Pet stats Row --> */}
         <div className="row justify-content-center mt-2">
             <div className="col-2 text-center border border-dark py-2 box">
-                <h4>Hunger: {pet.hunger}</h4>
+                <h4>Hunger: 75</h4>
             </div>
             <div className="col-2 text-center border border-dark py-2 mx-2 box">
-                <h4>Thirst: {pet.thirst}</h4>
+                <h4>Thirst: 78</h4>
             </div>
             <div className="col-2 text-center border border-dark py-2 box">
-                <h4>Affection: {pet.affection}</h4>
+                <h4>Affection: 49</h4>
             </div>
         </div>
       </div>

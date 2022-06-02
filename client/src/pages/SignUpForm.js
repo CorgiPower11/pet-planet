@@ -152,19 +152,14 @@ const SignupForm = () => {
             Pet name is required!
           </Form.Control.Feedback>
         </Form.Group>
+
         <Form.Group>
-          <Form.Label htmlFor="petType">Pet Type</Form.Label>
-          <Form.Control
-            type="petType"
-            placeholder="Your pet type"
-            name="petType"
-            onChange={handleInputChange}
-            value={userFormData.petType}
-            required
-          />
-          <Form.Control.Feedback type="invalid">
-            Pet type is required!
-          </Form.Control.Feedback>
+          <Form.Label htmlFor="petType">Choose Your Pet Type</Form.Label>
+          <Form.Select aria-label="petType">
+            <option onChange={handleInputChange} value={userFormData.petType}>ET</option>
+            <option onChange={handleInputChange} value={userFormData.petType}>Jar-Jar</option>
+            <option onChange={handleInputChange} value={userFormData.petType}>Alien</option>
+          </Form.Select>
         </Form.Group>
 
         <Button
