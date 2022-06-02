@@ -50,12 +50,10 @@ List of Collaborators:
 - Kim H. [kimmy-hill](https://github.com/kimmy-hill)
 - Kathy M. [CorgiPower11](https://github.com/CorgiPower11)
 
-  ## Deployed Links
-  [GitHub Page]()
+  ### Deployed Links
+  [Heroku App](https://pet-planet-2022.herokuapp.com/)
 
-  [Heroku App]()
-
-  ## Repository Links
+  ### Repository Links
   [GitHub Repository](https://github.com/AcheronandStyx/pet-planet)
 
 ## License
