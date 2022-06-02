@@ -1,12 +1,17 @@
+import jarjar from "../assets/img/Jar-Jar.png"; // TEMP FOR EXAMPLE DELETE IN PROD
 import React from "react";
 import jarjar from "../assets/img/Jar-Jar.png"// TEMP FOR EXAMPLE DELETE IN PROD
 import { useQuery } from '@apollo/client';
 import { QUERY_PET } from "../utils/queries";
 
-// Get information from database about which photo to display, 
+import React from "react";
+import { Navigate, useParams } from "react-router-dom";
+import { useQuery,  } from "@apollo/client";
+import { QUERY_USER, QUERY_PET, QUERY_ME } from "../utils/queries";
+import Auth from "../utils/auth";
+// Get information from database about which photo to display,
 //it could be either the photo itself or a refernce to a photo
 //
-
 
 const Pets = () => {
 
@@ -44,8 +49,8 @@ const Pets = () => {
                 <h4>Affection: {pet.affection}</h4>
             </div>
         </div>
-    </div>
-    );
-}
+      </div>
+  );
+};
 
 export default Pets;
