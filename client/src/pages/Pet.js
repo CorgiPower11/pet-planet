@@ -1,8 +1,3 @@
-import jarjar from "../assets/img/Jar-Jar.png"; // TEMP FOR EXAMPLE DELETE IN PROD
-import React from "react";
-import jarjar from "../assets/img/Jar-Jar.png"// TEMP FOR EXAMPLE DELETE IN PROD
-import { useQuery } from '@apollo/client';
-import { QUERY_PET } from "../utils/queries";
 
 import React from "react";
 import { Navigate, useParams } from "react-router-dom";
