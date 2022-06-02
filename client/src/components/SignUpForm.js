@@ -8,9 +8,14 @@ import {ADD_USER} from '../utils/mutations';
 //TODO: set up useMutation 
 import {useMutation} from '@apollo/client';
 
+//images not sure if it will work
+import jarjar from "../assets/img/Jar-Jar.png";
+import et from "../assets/img/ET.png";
+import alien from "../assets/img/Alien.png"
+
 const SignupForm = () => {
   // set initial form state
-  const [userFormData, setUserFormData] = useState({ username: "", email: "", password: "", petName: "", petType: "" });
+  const [userFormData, setUserFormData] = useState({ username: "", email: "", password: "", petName: "", imgName: "", petType: "" });
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
@@ -139,6 +144,37 @@ const SignupForm = () => {
           />
           <Form.Control.Feedback type='invalid'>Pet type is required!</Form.Control.Feedback>
         </Form.Group>
+        {/* not sure if this will work*/}
+        <Form.Group>
+          <Form.Check 
+          inline
+          label={alien}
+          name="petType"
+          type="radio"
+          onChange={handleInputChange}
+          value={userFormData.imgName}
+          required
+          />
+          <Form.Check 
+          inline
+          label={et}
+          name="petType"
+          type="radio"
+          onChange={handleInputChange}
+          value={userFormData.imgName}
+          required
+          />
+          <Form.Check 
+          inline
+          label={jarjar}
+          name="petType"
+          type="radio"
+          onChange={handleInputChange}
+          value={userFormData.imgName}
+          required
+          />
+        </Form.Group>
+        {/* not sure if this will work*/}
 
         <Button
           disabled={!(userFormData.username && userFormData.email && userFormData.password)}
