@@ -1,21 +1,25 @@
-const _question = document.getElementById('question');
-const _options = document.querySelector('.quiz-options');
-const _checkBtn = document.getElementById('check-answer');
-const _playAgainBtn = document.getElementById('play-again');
-const _result = document.getElementById('result');
-const _correctScore = document.getElementById('correct-score');
-const _totalQuestion = document.getElementById('total-question');
+/*
+const _question = document.getElementById("question");
+const _options = document.querySelector(".quiz-options");
+const _checkBtn = document.getElementById("check-answer");
+const _playAgainBtn = document.getElementById("play-again");
+const _result = document.getElementById("result");
+const _correctScore = document.getElementById("correct-score");
+const _totalQuestion = document.getElementById("total-question");
 
-let correctAnswer = "", correctScore = askedCount = 0, totalQuestion = 10;
+*/
 
-// load question from API
-async function loadQuestion(){
-    const APIUrl = 'https://opentdb.com/api.php?amount=10';
-    const result = await fetch(`${APIUrl}`)
-    const data = await result.json();
-    _result.innerHTML = "";
-    showQuestion(data.results[0]);
-}
+import React from "react";
+import { useQuery } from "@apollo/client"; // To send data to back end.
+import { UPDATE_STAT, QUERY_ME } from "../utils/queries"; // me to get logged in user data, update_stat to update the users stat model once quiz is done.
+import { useEffect, useState } from "react";
+import Quiz from "../components/Quiz";
+import { fetchQuiz } from "../utils/API";
+
+/*
+let correctAnswer = "",
+  correctScore = (askedCount = 0),
+  totalQuestion = 10;
 
 // event listeners
 function eventListeners(){
@@ -88,8 +92,8 @@ function HTMLDecode(textString) {
     return doc.documentElement.textContent;
 }
 
-
-function checkCount(){
+/*
+function checkCount() {
     askedCount++;
     setCount();
     if(askedCount == totalQuestion){
@@ -108,17 +112,85 @@ function checkCount(){
     }
 }
 
-function setCount(){
-    _totalQuestion.textContent = totalQuestion;
-    _correctScore.textContent = correctScore;
+
+function setCount() {
+  _totalQuestion.textContent = totalQuestion;
+  _correctScore.textContent = correctScore;
 }
 
-
-function restartQuiz(){
-    correctScore = askedCount = 0;
-    _playAgainBtn.style.display = "none";
-    _checkBtn.style.display = "block";
-    _checkBtn.disabled = false;
-    setCount();
-    loadQuestion();
+function restartQuiz() {
+  correctScore = askedCount = 0;
+  _playAgainBtn.style.display = "none";
+  _checkBtn.style.display = "block";
+  _checkBtn.disabled = false;
+  setCount();
+  loadQuestion();
 }
+*/
+function TriviaPage() {
+  // load question from API
+  /*
+  async function loadQuestion() {
+    const APIUrl = "https://opentdb.com/api.php?amount=10";
+    const result = await fetch(`${APIUrl}`);
+    const data = await result.json();
+    _result.innerHTML = "";
+    showQuestion(data.results[0]);
+  }*/
+
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [items, setItems] = useState([]);
+
+  // const quiz = getQuiz();
+  // console.log(quiz);
+  async function getQuiz() {
+    try {
+      const response = await fetch("https://opentdb.com/api.php?amount=10");
+      if (!response.ok) {
+        throw new Error("something went wrong!");
+      }
+
+      const temp = await response.json();
+
+      const quiz = temp.data[0].results;
+      // console.log(quiz);
+      // console.log(quiz);
+      return quiz;
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  const quiz = getQuiz();
+  console.log(quiz);
+
+  /*
+  useEffect(() => {
+    console.log("triggered api call");
+    fetch("https://opentdb.com/api.php?amount=10")
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setItems(result);
+          console.log(result);
+        },
+
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+          console.log(error);
+        }
+      );
+  }, []);*/
+
+  const questions = items; // save the array of api questions to be passed as a prop.
+  return (
+    <div>
+      <Quiz questions={getQuiz()} />
+    </div>
+  );
+}
+
+export default TriviaPage;

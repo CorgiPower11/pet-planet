@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
 import SignUpForm from '../../pages/SignUpForm';
 import LoginForm from '../../pages/LoginForm';
-
+import TriviaPage from '../../pages/TriviaPage';
 import Auth from '../../utils/auth';
 
 const AppNavbar = () => {
@@ -29,6 +29,7 @@ const AppNavbar = () => {
                   <Nav.Link as={Link} to='/pet'>
                     See Your Pet
                   </Nav.Link>
+                  <Nav.Link as={Link} to='/trivia'>Take a Quiz</Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
               ) : (

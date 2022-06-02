@@ -2,7 +2,7 @@ import jarjar from "../assets/img/Jar-Jar.png"; // TEMP FOR EXAMPLE DELETE IN PR
 
 import React from "react";
 import { Navigate, useParams } from "react-router-dom";
-import { useQuery, useMutation } from "@apollo/client";
+import { useQuery,  } from "@apollo/client";
 import { QUERY_USER, QUERY_PET, QUERY_ME } from "../utils/queries";
 import Auth from "../utils/auth";
 // Get information from database about which photo to display,
@@ -11,7 +11,6 @@ import Auth from "../utils/auth";
 
 const Pets = () => {
     let username = 'testy'
-    console.log(QUERY_ME)
 
     // Pulls the hard coded username, QUERY_ME should pull the logged in user data, but is returning undefined.  Once we get it to return the logged in user we can pull the users PetId and use that to pull their pet data.
   const data  = useQuery(QUERY_USER, {variables: { username }});
