@@ -26,7 +26,7 @@ const AppNavbar = () => {
                   <Nav.Link as={Link} to='/pet'>
                     See Your Pet
                   </Nav.Link>
-                  <Nav.Link as={Link} to='/trivia'>Take a Quiz</Nav.Link>
+                  <Nav.Link as={Link} to='/triviapage'>Take a Quiz</Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
               ) : (
