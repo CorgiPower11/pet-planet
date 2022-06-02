@@ -14,7 +14,7 @@ Our project is to create an application where users can select a pet to take car
 
 ## Installation
 
-Run `npm i` to install Node.js packages. Then run `npm start` to execute the program.
+Run `npm install` to install Node.js packages. Then run `npm run build` to execute the program.
 
 # Usage
 
@@ -25,11 +25,11 @@ User enters the application and is given the option of adopting a new pet or car
 
 ### Login Form
 To adpot a new pet, user create a profile by entering in a username, email, and password.
-![Sign Up Form](client\src\assets\img\user-pet-profile.PNG)
+![Sign Up Form](client\src\assets\img\signup.PNG)
 
 ### Pet Stats
 
-Users can view their pet stats by clicking the "My Pet" on the nav bar.
+Users can view their pet stats by clicking the "Your Pet" on the nav bar.
 ![Pet Stats](client\src\assets\img\user-pet-profile.PNG)
 
 ## Tools
@@ -51,7 +51,7 @@ List of Collaborators:
 - Kathy M. [CorgiPower11](https://github.com/CorgiPower11)
 
   ## Deployed Links
-  [GitHub Page](https://github.com/AcheronandStyx/pet-planet)
+  [GitHub Page]()
 
   [Heroku App]()
 
