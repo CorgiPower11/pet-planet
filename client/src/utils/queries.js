@@ -6,14 +6,29 @@ export const QUERY_USER = gql`
       _id
       username
       email
-      stats {
+      stats
+      pet {
         _id
         username
-        pointsEarned
-        quizesCompleted
-        questionsAnswered
-        correctAnswers
+        petName
+        petType
+        lastFed
+        hunger
+        thirst
+        affection
       }
+    }
+  }
+`;
+
+// Get all users
+export const QUERY_USERS = gql`
+  query {
+    users {
+      _id
+      username
+      email
+      stats
       pet {
         _id
         username
@@ -29,11 +44,12 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_STAT = gql`
-  query stat($username: String!) {
-    stat(username: $username) {
+  query stat($id: ID!) {
+    stat(_id: $id) {
       _id
       username
       pointsEarned
+      pointsBanked
       quizesCompleted
       questionsAnswered
       correctAnswers
@@ -42,8 +58,8 @@ export const QUERY_STAT = gql`
 `;
 
 export const QUERY_PET = gql`
-  query pet($username: String!) {
-    stat(username: $username) {
+  query pet($id: ID!) {
+    pet(_id: $id) {
       _id
       username
       petName
@@ -52,6 +68,7 @@ export const QUERY_PET = gql`
       hunger
       thirst
       affection
+      imgName
     }
   }
 `;
@@ -63,14 +80,7 @@ export const QUERY_ME = gql`
       username
       email
       petName
-      stats {
-        _id
-        username
-        pointsEarned
-        quizesCompleted
-        questionsAnswered
-        correctAnswers
-      }
+      stats
       pet {
         _id
         username
