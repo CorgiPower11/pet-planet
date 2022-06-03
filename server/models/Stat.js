@@ -15,6 +15,9 @@ const statSchema = new Schema(
     pointsEarned: {
       type: Number,
     },
+    pointsBanked: {
+      type: Number,
+    },
     quizesCompleted: {
       type: Number,
     },
@@ -23,7 +26,7 @@ const statSchema = new Schema(
     },
     correctAnswers: {
       type: Number,
-    },
+    }, // could add reference to lowest score on leadr board as an easy check to see  if the leaderboard needs to recalculate
   },
   {
     toJSON: {
@@ -32,11 +35,12 @@ const statSchema = new Schema(
     },
   }
 );
-
+/*
 // uses correctAnsers and questionsAnswered to calculate the percent of questions answered correctly as a decimal. Can be parsed to percent on the front end
 statSchema.virtual("percentCorrect").get(function () {
-  return this.correctAnswers / questionsAnswered;
+  return this.correctAnswers / this.questionsAnswered;
 });
+*/
 
 const Stat = model("Stat", statSchema);
 module.exports = Stat;

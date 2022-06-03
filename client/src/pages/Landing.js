@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Landing = () => {
     return (
@@ -11,14 +12,18 @@ const Landing = () => {
         </div>
         <div className="row justify-content-center mt-5">
             <button className="col-3 mx-2 p-3">
+                <Link to="/SignupForm">
                 Adopt New
+                </Link>
             </button>
             <button className="col-3 mx-2">
-                Existing
+                <Link to="/LoginForm">
+                Existing Pet
+                </Link>
             </button>
         </div>
     </div>
-    );
-}
+  );
+};
 
 export default Landing;

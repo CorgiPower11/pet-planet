@@ -13,7 +13,7 @@ const typeDefs = gql`
     _id: ID
     username: String
     email: String
-    stats: [Stat]
+    stats: ID
     pet: [Pet]
   }
 
@@ -21,14 +21,15 @@ const typeDefs = gql`
     me: User
     users: [User]
     user(username: String!): User
-    pet(username: String): [Pet]
-    stats(username: String): [Stat]
+    pet(_id: ID!): Pet
+    stat(_id: ID!): Stat
   }
 
   type Stat {
     _id: ID
     username: String
     pointsEarned: Int
+    pointsBanked: Int
     quizesCompleted: Int
     questionsAnswered: Int
     correctAnswers: Int
@@ -43,18 +44,25 @@ const typeDefs = gql`
     hunger: Int
     thirst: Int
     affection: Int
+    imgName: String
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
-    createUser(
-      username: String!
-      email: String!
-      password: String!
-      petName: String!
-      petType: String!
-    ): Auth
+    createUser(username: String!, email: String!, password: String!): Auth
+    createStat(username: String!): Stat
+    createPet(username: String!, petName: String!, petType: String!, imgName: String!): Pet
+    updateStat(statId: String!, difficulty: String!, correctAnswers: Int!, quizLength: Int!): Stat
+    updateUser(username: String!, email: String, password: String): User
+    nurishPet(petId: String!, fed: Int, drank: Int, playedWith: Int): Pet
+    decayPetNeeds(petId: String!): Pet
   }
 `;
 
 module.exports = typeDefs;
+/*
+    updateStat(username: String!, difficulty: String!, correctAnswers: Int) : Stat
+    updateUser(username: String!, email: String, password: String): User
+    updatePet(username: String!, petName: String, lastFed: String, hunger: Int, thirst: Int, affection: Int): Pet
+
+*/

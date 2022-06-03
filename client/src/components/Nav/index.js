@@ -19,7 +19,6 @@ const AppNavbar = () => {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
-            <Nav className='ml-auto'>
               {/* if user is logged in show pet and logout */}
               {Auth.loggedIn() ? (
                 <>
