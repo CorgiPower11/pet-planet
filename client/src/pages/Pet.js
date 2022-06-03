@@ -3,7 +3,8 @@ import React from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { useQuery,  } from "@apollo/client";
 import { QUERY_USER, QUERY_PET, QUERY_ME } from "../utils/queries";
-import Auth from "../utils/auth";
+import ET from "../assets/img/ET.png";
+import '../index.css'
 // Get information from database about which photo to display,
 //it could be either the photo itself or a refernce to a photo
 //
@@ -21,14 +22,14 @@ const Pets = () => {
         {/* <!-- Pets Name Row --> */}
         <div className="row mt-5 justify-content-center">
             <div className="col-3 border border-dark box py-1">
-            <h1 className="text-center" id="petName">Samuel</h1>
+            <h1 className="text-center" id="petName">Juno300</h1>
             </div>
         </div>
 
         {/* <!-- Pet Picture Row --> */}
         <div className="row justify-content-center">
             <div className="col-md-4 text-center mt-3">
-                <img src="../temp/img/ET.png" className="img-fluid" alt="Alien"/>
+                <img src={ET} className="img-fluid" id="petImage" alt="Alien"/>
             </div>
         </div>
 

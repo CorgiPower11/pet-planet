@@ -42,3 +42,8 @@ button:hover {
   cursor: pointer;
   font-weight: 900;
 }
+
+#petImage{
+  height: 300px;
+  width: 150px;
+}
