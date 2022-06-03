@@ -14,7 +14,7 @@ Our project is to create an application where users can select a pet to take car
 
 ## Installation
 
-Run `npm install` to install Node.js packages. Then run `npm run build` to execute the program.
+Run `npm install` to install Node.js packages. Then run `npm run develop` to execute the program.
 
 # Usage
 
